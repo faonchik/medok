@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Пасека "Дивный улей"{% endblock %}</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+    
+    <!-- JavaScript -->
+    <script src="{% static 'main/js/script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;600;700&family=Ysabeau+SC:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Навигация -->
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'home' %}" class="logo"></a>
+            <ul class="menu">
+                <li><a href="{% url 'about' %}">О НАС</a></li>
+                <li><a href="{% url 'excursions' %}">ЭКСКУРСИИ</a></li>
+                <li><a href="{% url 'delivery' %}">ДОСТАВКА И ОПЛАТА</a></li>
+                <li><a href="{% url 'products' %}">ПРОДУКЦИЯ</a></li>
+                <li><a href="{% url 'candles' %}">ВОСКОВЫЕ СВЕЧИ</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">ЛИЧНЫЙ КАБИНЕТ</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">ВХОД</a></li>
+                    <li><a href="{% url 'register' %}">РЕГИСТРАЦИЯ</a></li>
+                {% endif %}
+            </ul>
+            <div class="card-large">
+                <a href="{% url 'cart' %}">
+                    <img src="{% static 'main/img/cart-large.svg' %}" alt="Корзина">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        {% if messages %}
+            <div class="messages" style="display: none;">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="beesss">
+            <div class="bee bee5"></div>
+            <div class="bee bee6"></div>
+            <div class="bee bee7"></div>
+            <div class="bee bee8"></div>
+        </div>
+        
+        <div class="footer-main">
+            <a href="{% url 'home' %}" class="logofo"></a>
+
+            <div class="footer-container">
+                <div class="footer-col">
+                    <ul>
+                        <li><a href="{% url 'about' %}">О НАС</a></li>
+                        <li><a href="{% url 'excursions' %}">ЭКСКУРСИИ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <ul>
+                        <li><a href="{% url 'delivery' %}">ДОСТАВКА И ОПЛАТА</a></li>
+                        <li><a href="{% url 'products' %}">ПРОДУКЦИЯ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="socialmed">
+                <a href="https://vk.com/divuley"><img src="{% static 'main/img/VK.svg' %}" alt="vk"></a>
+                <a href="#"><img src="{% static 'main/img/what.svg' %}" alt="wa"></a>
+                <a href="https://t.me/divuley"><img src="{% static 'main/img/TG.svg' %}" alt="tg"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

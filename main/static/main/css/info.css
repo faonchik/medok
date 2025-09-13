@@ -1,0 +1,266 @@
+body {
+    background-image: url("../img/Linked Path Group.svg");
+                      url("../img/Linked Path Group 2.png");
+url("../img/Linked Path Group 3.png");
+    background-position: top left, center;   /* позиции картинок */
+    background-repeat: repeat, no-repeat;    /* первая повторяется, вторая — нет */
+    background-size: auto, cover;            /* размер: первая как есть, вторая на весь экран */
+    background-color: #FBFAF5;
+    font-family: 'Ysabeau SC', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main { flex: 1; }
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 60px 0;
+}
+
+/* Навигация */
+.navbar .menu li a {
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 24px;
+    color: #32241A;
+    transition: color 0.3s ease;
+}
+.navbar .menu li a:hover {
+    color: #32241A;
+}
+
+/* Навбар */
+.navbar {
+    background: #FECE00;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20%;
+    height: 80px;
+    gap: 40px;
+}
+
+.logo {
+    width: 80px;                     /* Ширина логотипа */
+    height: 60px;                     /* Высота логотипа */
+    background-image: url('../img/лого.png');
+    background-size: contain;         /* Логотип полностью помещается в блок */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card-large img {
+    width: 70px;                     /* Ширина логотипа */
+    height: 30px;                     /* Высота логотипа */
+    cursor: pointer;
+}
+
+.navbar .menu {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0 auto;
+    padding: 0;
+    align-items: center;
+
+}
+.navbar .menu li a {
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 18px;
+    color: #32241A;
+}
+
+/* Общий контейнер */
+.info {
+    padding-left: 21%;   /* тот же отступ, что и у логотипа/баннера */
+    padding-right: 5%;
+    padding-top: 80px;    /* отступ сверху от хедера */
+    padding-bottom: 80px; /* отступ снизу перед футером */
+}
+
+/* Заголовок */
+.info h2 {
+    color: #32241A;
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    text-align: left;    /* выравниваем по левому краю */
+}
+
+/* Текст */
+.info p {
+    font-family: 'Ysabeau SC', sans-serif;
+    font-size: 18px;
+    color: #32241A;
+    text-align: left;    /* по левому краю, как логотип */
+    margin-bottom: 30px; /* расстояние до галереи */
+    line-height: 1.5;
+}
+
+/* Галерея */
+.info .gallery {
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+}
+
+.info .gallery img {
+    width: 310px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.product {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* чтобы верх текста совпадал с верхом картинки */
+    margin: 80px 0;
+    padding-left: 21%; /* отступ от левого края */
+    padding-right: 5%; /* отступ от правого края */
+}
+
+.product-text {
+    position: relative;
+    max-width: 600px;
+}
+
+.product-text .hex-bg {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    z-index: -1;
+    width: 220px;
+    opacity: 0.9;
+}
+
+.product h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #32241A;
+}
+
+.product p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    color: #32241A;
+}
+
+.product-img img {
+    max-width: 600px;    /* увеличили размер сот */
+    display: block;
+    margin-left: 80px;   /* отодвигаем от правого края блока */
+    margin-top: 90px;
+}
+
+
+.footer {
+    position: relative;
+    background-color: #FECE00;
+    padding: 20px 40px 10px 40px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between; /* колонки слева, иконки справа */
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;              /* ограничение по ширине */
+    margin: 0 auto;                 /* центрируем контейнер */
+    gap: 40px;                       /* расстояние между колонками и иконками */
+}
+
+/* Убедимся, что блоки до футера не создают лишнего отступа */
+section, main {
+    margin-bottom: 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;  /* ссылки будут в центре */
+    gap: 80px;
+    flex: 1;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col li {
+    margin-bottom: 12px;
+}
+
+.footer-col a {
+    text-decoration: none;
+    color: #32241A;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    transition: color 0.3s;
+}
+
+
+.bee {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 3; /* поверх текста */
+}
+
+.bee5, .bee6, .bee7, .bee8 {
+    position: absolute; /* важно */
+    width: 50px;        /* пример размера */
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bee5 { top: 0%; left: 30%; background-image: url('../img/bee1.png'); }
+.bee6 { top: 10%; left: 60%; background-image: url('../img/bee2.png'); }
+.bee7 { top: 50%; left: 40%; background-image: url('../img/bee3.png'); }
+
+
+
+.logofo {
+    width: 200px;                     /* Ширина логотипа */
+    height: 60px; /* Высота логотипа */
+    background-image: url('../img/лого.png');
+    background-size: contain;         /* Логотип полностью помещается в блок */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.socialmed {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* выравнивание по верхнему краю колонок */
+}
+
+
+.socialmed img {
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    object-fit: contain;
+}
+
+.socialmed img:hover {
+    transform: scale(1.2);
+}

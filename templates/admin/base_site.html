@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Администрирование сайта</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+{{ block.super }}
+<style>
+    .custom-admin-link {
+        background: #417690;
+        color: white;
+        padding: 10px 15px;
+        margin-left: 20px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .custom-admin-link:hover {
+        background: #205067;
+    }
+</style>
+<a href="/admin/products-cards/" class="custom-admin-link">📦 Просмотр карточек товаров</a>
+{% endblock %}

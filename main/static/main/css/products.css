@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Ysabeau SC', sans-serif;
+    background-color: #ffffff;
+}
+
+.products-section {
+    max-width: 1541px;
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+
+.products-title {
+    color: #32241a;
+    margin-bottom: 40px;
+    text-align: left;
+    font: 700 64px "Yanone Kaffeesatz", sans-serif;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 92px;
+    width: 100%;
+}
+
+.product-card {
+    position: relative;
+    width: 450px;
+    height: 468px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image {
+    width: 369px;
+    height: 365px;
+    object-fit: cover;
+    aspect-ratio: 92/91;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.product-title {
+    color: #32241a;
+    position: absolute;
+    left: 91px;
+    top: 335px;
+    width: 234px;
+    height: 36px;
+    z-index: 3;
+    font: 700 36px "Yanone Kaffeesatz", sans-serif;
+}
+
+.product-description {
+    width: 242px;
+    height: 85px;
+    color: #32241a;
+    position: absolute;
+    left: 91px;
+    top: 383px;
+    z-index: 3;
+    font: 400 20px "Ysabeau SC", sans-serif;
+}
+
+.price-container {
+    position: absolute;
+    left: 275px;
+    top: 217px;
+    z-index: 2;
+}
+
+.price-container .hexagon-bg {
+    width: 117px;
+    height: 118px;
+}
+
+.price-text {
+    width: 100%;
+    height: 100%;
+    color: #32241a;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 400 32px "Yanone Kaffeesatz", sans-serif;
+}
+
+.cart-button {
+    position: absolute;
+    left: 333px;
+    top: 316px;
+    z-index: 2;
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.cart-button .hexagon-bg {
+    width: 117px;
+    height: 118px;
+}
+
+.cart-icon {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 36px;
+    top: 36px;
+}
+
+.cart-button:hover .hexagon-bg path {
+    fill: #e6b800;
+}
+
+.cart-button:focus,
+.cart-button:focus-visible,
+.cart-button:active,
+.cart-button:visited {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.decorative-hexagon {
+    position: absolute;
+    left: 216px;
+    top: 316px;
+    z-index: 1;
+}
+
+.hexagon-light {
+    width: 117px;
+    height: 118px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+    }
+
+    .product-card {
+        width: 350px;
+        height: 364px;
+    }
+
+    .product-image {
+        width: 287px;
+        height: 284px;
+    }
+
+    .product-title {
+        font-size: 28px;
+        left: 71px;
+        top: 260px;
+        width: 182px;
+    }
+
+    .product-description {
+        font-size: 16px;
+        left: 71px;
+        top: 298px;
+        width: 188px;
+        height: 66px;
+    }
+
+    .price-container {
+        left: 214px;
+        top: 169px;
+    }
+
+    .price-text {
+        font-size: 25px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cart-button {
+        left: 259px;
+        top: 246px;
+    }
+
+    .decorative-hexagon {
+        left: 168px;
+        top: 246px;
+    }
+}
+
+@media (max-width: 640px) {
+    .products-title {
+        font-size: 48px;
+        margin-bottom: 30px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        justify-items: center;
+    }
+
+    .product-card {
+        width: 280px;
+        height: 291px;
+    }
+
+    .product-image {
+        width: 230px;
+        height: 227px;
+    }
+
+    .product-title {
+        font-size: 22px;
+        left: 57px;
+        top: 208px;
+        width: 146px;
+    }
+
+    .product-description {
+        font-size: 14px;
+        left: 57px;
+        top: 238px;
+        width: 150px;
+        height: 53px;
+    }
+
+    .price-container {
+        left: 171px;
+        top: 135px;
+    }
+
+    .price-text {
+        font-size: 20px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cart-button {
+        left: 207px;
+        top: 197px;
+    }
+
+    .decorative-hexagon {
+        left: 134px;
+        top: 197px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-section {
+        padding: 20px 10px;
+    }
+
+    .products-title {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .products-grid {
+        gap: 30px;
+    }
+}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Экскурсии{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/excursions.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="info" style="margin-bottom:0;">
+        <h2>ЭКСКУРСИИ</h2>
+        <p> Мы приглашаем вас в удивительное путешествие в мир пчёл! На нашей пасеке «Дивный улей» можно не только увидеть,<br>
+            как живут пчелиные семьи, но и самим попробовать себя в роли пчеловода.
+            Во время экскурсии вы узнаете, как устроен улей,<br>
+            чем заняты пчёлы в разные времена года, и как рождается настоящий мёд. Мы покажем вам процесс работы пасеки и дадим<br>
+            возможность попробовать мёд прямо из сот — свежий, ароматный и живой.
+        
+        <br>Для тех, кто хочет большего, мы проводим увлекательные мастер-классы по изготовление свечей из натурального воска, <br>
+            добыче мёда и знакомство с полезными продуктами пчеловодства. Это отличный отдых для всей семьи, возможность прикоснуться<br>
+            к природе и провести время с пользой и удовольствием. Дети будут в восторге от живого общения с пчёлами, а взрослые найдут<br>
+            вдохновение и новые знания.
+            <br>
+            <br>Добро пожаловать в «Дивный улей» — за сладкими впечатлениями и полезным опытом!</p>
+        
+        <!-- Галерея изображений экскурсий -->
+        <div class="gallery">
+            <img src="/media/honey_products/Rectangle 4.svg" alt="Экскурсия - работа с сотами">
+            <img src="/media/honey_products/Rectangle 5.svg" alt="Экскурсия - работа пчеловодов">
+            <img src="/media/honey_products/Rectangle 6.svg" alt="Экскурсия - обучение детей">
+        </div>
+    </section>
+    
+    <!-- Секция записи на экскурсию -->
+    <section class="booking-section">
+        <div class="booking-content">
+            <h3 class="booking-title">ЗАПИСАТЬСЯ ИЛИ УЗНАТЬ ПОДРОБНОСТИ</h3>
+            <p class="booking-phone">8(964) 474-77-05</p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <img src="/media/honey_products/Vector.svg" alt="VK">
+                </a>
+                <a href="#" class="social-link">
+                    <img src="/media/honey_products/icons8-whatsapp 1.svg" alt="WhatsApp">
+                </a>
+                <a href="#" class="social-link">
+                    <img src="/media/honey_products/Vector-1.svg" alt="Telegram">
+                </a>
+            </div>
+        </div>
+        
+        <!-- Летающие пчёлки -->
+        <div class="flying-bees">
+            <div class="bee bee-1"></div>
+            <div class="bee bee-2"></div>
+            <div class="bee bee-3"></div>
+            <div class="bee bee-4"></div>
+        </div>
+    </section>
+    
+    <section class="contacts">
+        <div class="contacts-info">
+            
+        </div>
+    </section>
+{% endblock %}

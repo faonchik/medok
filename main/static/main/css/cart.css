@@ -1,0 +1,407 @@
+/* Белый header только на странице корзины */
+.navbar.navbar--white { background: #fff; }
+.navbar.navbar--white .menu li a { color: #32241A; }
+
+/* Основные стили корзины */
+.cart-page {
+    background-color: rgba(251, 250, 245, 1);
+    display: flex;
+    padding-top: 41px;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+.page-container {
+    align-self: center;
+    display: flex;
+    width: 100%;
+    max-width: 1620px;
+    flex-direction: column;
+    align-items: start;
+}
+
+.cart-content {
+    width: 100%;
+}
+
+.cart-title {
+    color: rgba(50, 36, 26, 1);
+    margin: 80px 0 0 10px;
+    font: 700 48px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.cart-container {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    width: 900px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: end;
+    margin: 50px 0 0 10px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 25px rgba(50, 36, 26, 0.08);
+}
+
+.cart-items {
+    align-self: stretch;
+    width: 100%;
+}
+
+.cart-item {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: normal;
+    width: 50%;
+    margin-left: 0px;
+}
+
+.product-details {
+    display: flex;
+    flex-grow: 1;
+    align-items: stretch;
+    gap: 20px;
+    font: 24px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.product-image {
+    aspect-ratio: 1.01;
+    object-fit: contain;
+    object-position: center;
+    width: 100px;
+    flex-shrink: 0;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product-text {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    margin: auto 0;
+}
+
+.product-name {
+    color: rgba(50, 36, 26, 1);
+    font-weight: 700;
+    margin: 0;
+    font-size: 24px;
+}
+
+.product-weight {
+    color: rgba(0, 0, 0, 1);
+    font-weight: 400;
+    align-self: start;
+    margin: 15px 0 0 0;
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+.quantity-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: normal;
+    width: 21%;
+    margin-left: 20px;
+}
+
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    color: rgba(0, 0, 0, 1);
+    white-space: nowrap;
+    margin: auto 0;
+    font: 400 32px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.quantity-btn {
+    background: none;
+    border: none;
+    font: 400 36px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+    color: rgba(50, 36, 26, 1);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.quantity-btn:hover {
+    color: #E6B800;
+    transform: scale(1.2);
+}
+
+.quantity-display {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    position: relative;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 68px;
+    flex-shrink: 0;
+}
+
+.quantity-display .hexagon-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.quantity-number {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    color: #32241A;
+    font-size: 20px;
+}
+
+.item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    line-height: normal;
+    width: 29%;
+    margin-left: 20px;
+}
+
+.item-actions > div {
+    display: flex;
+    align-items: stretch;
+    gap: 40px 84px;
+    align-self: stretch;
+    margin: auto 0;
+}
+
+.item-price {
+    color: rgba(50, 36, 26, 1);
+    font: 400 24px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-icon {
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.action-icon:hover {
+    background: rgba(254, 206, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.edit-icon {
+    aspect-ratio: 3.33;
+    object-fit: contain;
+    object-position: center;
+    width: 24px;
+}
+
+.delete-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 20px;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+}
+
+.total-section {
+    display: flex;
+    margin-top: 60px;
+    width: 100%;
+    max-width: 100%;
+    align-items: stretch;
+    gap: 20px;
+    color: rgba(50, 36, 26, 1);
+    white-space: nowrap;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font: 28px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+    padding: 20px 0;
+    border-top: 2px solid #FECE00;
+}
+
+.total-label {
+    font-weight: 700;
+}
+
+.total-price {
+    font-weight: 400;
+}
+
+.checkout-btn {
+    border-radius: 8px;
+    background-color: rgba(254, 206, 0, 1);
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: stretch;
+    color: rgba(50, 36, 26, 1);
+    white-space: nowrap;
+    justify-content: center;
+    padding: 18px 50px;
+    font: 400 24px Yanone Kaffeesatz, -apple-system, Roboto, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(254, 206, 0, 0.3);
+}
+
+.checkout-btn:hover {
+    background-color: rgba(254, 206, 0, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(254, 206, 0, 0.4);
+}
+
+.page-footer {
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-image {
+    aspect-ratio: 4.22;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    margin-top: 120px;
+}
+
+/* Адаптивность */
+@media (max-width: 991px) {
+    .page-container {
+        max-width: 100%;
+    }
+    
+    .cart-title {
+        margin-top: 40px;
+        font-size: 36px;
+    }
+    
+    .cart-container {
+        margin-top: 40px;
+        padding: 40px 20px;
+    }
+    
+    .cart-items {
+        max-width: 100%;
+        margin-right: 10px;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+    
+    .item-info {
+        width: 100%;
+    }
+    
+    .product-details {
+        margin-top: 20px;
+    }
+    
+    .product-weight {
+        margin-top: 20px;
+    }
+    
+    .quantity-controls {
+        width: 100%;
+    }
+    
+    .quantity-wrapper {
+        margin-top: 20px;
+        font-size: 24px;
+        white-space: initial;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .quantity-btn {
+        font-size: 28px;
+        width: 25px;
+        height: 25px;
+    }
+    
+    .quantity-display {
+        white-space: initial;
+        width: 50px;
+        height: 57px;
+    }
+    
+    .quantity-display .hexagon-bg {
+        width: 50px;
+        height: 57px;
+    }
+    
+    .item-actions {
+        width: 100%;
+    }
+    
+    .item-actions > div {
+        margin-top: 20px;
+        justify-content: space-between;
+    }
+    
+    .total-section {
+        margin-top: 40px;
+        white-space: initial;
+    }
+    
+    .checkout-btn {
+        margin-top: 30px;
+        white-space: initial;
+        padding: 16px 30px;
+        font-size: 20px;
+    }
+    
+    .footer-image {
+        max-width: 100%;
+        margin-top: 40px;
+    }
+}
+
+

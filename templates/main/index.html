@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная — Пасека{% endblock %}
+
+{% block content %}
+    <!-- Герой-блок -->
+    <section class="hero">
+        <div class="banner"></div>
+        <div class="hero-text">
+            <h1>ВСЕ МЫ ЛЮБИМ МЁД</h1>
+            <div class="hero-row">
+        <p class="slogan">Забайкальский, настоящий, наш!</p>
+</div>
+        </div>
+        <div class="bee bee1"></div>
+        <div class="bee bee2"></div>
+        <div class="bee bee3"></div>
+        <div class="bee bee4"></div>
+        <div class="figure"></div>
+        
+        <div class="hero-contact">
+        <p class="phone">+7 (964) 474-77-05</p>
+        <div class="social">
+            <a href="https://vk.com/divuley"><img src="{% static 'main/img/VK.svg' %}" alt="vk"></a>
+            <a href="#"><img src="{% static 'main/img/what.svg' %}" alt="wa"></a>
+            <a href="https://t.me/divuley"><img src="{% static 'main/img/TG.svg' %}" alt="tg"></a>
+        </div>
+    </div>
+    </section>
+
+    
+<section class="products-preview">
+    <h2>ПОПРОБУЙТЕ</h2>
+    <div class="cards">
+        <div class="card" onclick="window.location.href='{% url 'products' %}'" style="cursor: pointer;">
+            <div class="card-content">
+                <img class="card-star" src="{% static 'main/img/Star 6.png' %}" alt="звезда">
+                <p class="card-title">МЁД</p>
+                <img class="card-image honey-jar" src="{% static 'main/img/БАНКА.png' %}" alt="категория">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <img class="card-star" src="{% static 'main/img/Star 6.png' %}" alt="звезда">
+                <p class="card-title">ПРОДУКТЫ ПЧЕЛОВОДСТВА</p>
+                <img class="card-image honeycombs" src="{% static 'main/img/СОТЫ С МЁДОМ.png' %}" alt="категория">
+            </div>
+        </div>
+
+        <div class="card" onclick="window.location.href='{% url 'candles' %}'" style="cursor: pointer;">
+            <div class="card-content">
+                <img class="card-star" src="{% static 'main/img/Star 6.png' %}" alt="звезда">
+                <p class="card-title">ВОСКОВЫЕ СВЕЧИ</p>
+                <img class="card-image candles" src="{% static 'main/img/СВЕЧИ.png' %}" alt="категория">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <img class="card-star" src="{% static 'main/img/Star 6.png' %}" alt="звезда">
+                <p class="card-title">МЕДОВЫЕ НАБОРЫ</p>
+                <img class="card-image set" src="{% static 'main/img/НАБОР.png' %}" alt="категория">
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Наша пасека -->
+    <section class="about-farm">
+    <div class="gallery">
+        <div class="bees-s">
+    <img src="{% static 'main/img/ПЧЁЛКИ О НАС.png' %}" alt="Пчёлки"></div>
+        <div class="big">
+            <img src="{% static 'main/img/image 1.png' %}" alt="">
+        </div>
+        <div class="small">
+            <img src="{% static 'main/img/image 2.png' %}" alt="">
+            <img src="{% static 'main/img/image 3.png' %}" alt="">
+        </div>
+    </div>
+        <div class="text-under-gallery">
+        <h2>НАША ПАСЕКА</h2>
+        <p>Пасека «Дивный улей» — место, где трудолюбивые пчёлы и любовь к природе соединяются в единое целое. Здесь мы заботимся о каждом улье, ведь только<br>
+            в гармонии с окружающим миром рождается настоящий, живой и полезный мёд. Наша пасека — это не просто производство, а уютный уголок, где пчёлы чувствуют себя свободно и счастливо.
+            Мы бережно ухаживаем за пчелиными семьями; создаём условия для их естественной жизни; собираем мёд<br> и продукты пчеловодства.
+            Каждая баночка мёда с нашей пасеки несёт в себе<br> не только аромат лугов и цветов, но и частичку нашей души.
+            <br>Добро пожаловать в мир пчёл и натурального мёда!</p>
+        </div>
+        <div class="figure-star"></div>
+    </section>
+    
+    <!-- Экскурсии -->
+    <section class="excursions">
+        <div class="bees-s-s">
+    <img src="{% static 'main/img/ПЧЁЛКИ ЭКСКУРСИЯ.png' %}" alt="Пчёлки"></div>
+        <h2>ЭКСКУРСИИ</h2>
+        <div class="gallery">
+            <img src="{% static 'main/img/ludbe.jpg' %}" alt="">
+            <img src="{% static 'main/img/fodiv.jpg' %}" alt="">
+            <img src="{% static 'main/img/excurs.jpg' %}" alt="">
+        </div>
+        
+        <div class="text">
+                <p>Мы рады пригласить вас на увлекательные экскурсии в пасеку «Дивный улей»! Здесь вы сможете прикоснуться <br>
+                    к таинственному миру пчёл и увидеть, как рождается настоящий мёд.
+                    Во время экскурсии вы узнаете, как живёт пчелиная семья и чем каждая пчёлка занята; увидите ульи изнутри и работу пчеловода; попробуете свежий мёд прямо с сот;
+                    познакомитесь с другими продуктами пчеловодства и их пользой для здоровья.
+                    Это не просто прогулка,<br> а настоящее путешествие в дивный мир природы и гармонии. 
+                    Экскурсии будут интересны и взрослым, и детям — каждый найдёт для себя что-то новое и удивительное.</p>
+
+        <a href="{% url 'excursions' %}" class="btn">ПОДРОБНЕЕ</a>
+        </div>
+        
+    </section>
+
+    <!-- Тестовая кнопка для проверки уведомлений (временно) -->
+    <div style="text-align: center; margin: 20px 0; padding: 20px;">
+        <button onclick="window.notificationSystem.show('Тест уведомления работает!', 3000)" 
+                style="background: #FECE00; color: #32241A; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 700; cursor: pointer;">
+            Тест уведомления
+        </button>
+    </div>
+{% endblock %}

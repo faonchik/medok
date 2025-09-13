@@ -1,0 +1,420 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="cart-page">
+  <div class="page-container">
+    <main class="cart-content">
+      <h1 class="cart-title">ТОВАРЫ В КОРЗИНЕ</h1>
+
+      <section class="cart-container">
+        {% if user.is_authenticated %}
+          {% if items %}
+            <div class="cart-items">
+              {% for row in items %}
+              <article class="cart-item">
+                <div class="item-info">
+                  <div class="product-details">
+                    {% if row.product.image %}
+                    <img class="product-image" src="{{ row.product.image.url }}" alt="{{ row.product.title }}">
+                    {% else %}
+                    <img class="product-image" src="{% static 'main/img/БАНКА.png' %}" alt="{{ row.product.title }}">
+                    {% endif %}
+                    <div class="product-text">
+                      <h2 class="product-name">{{ row.product.title }}</h2>
+                      <p class="product-weight">{{ row.product.weight }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quantity-controls">
+                  <div class="quantity-wrapper">
+                    <a class="quantity-btn decrease-btn" href="{% url 'change_qty' 'dec' row.product.id %}">-</a>
+                    <div class="quantity-display">
+                      <svg class="hexagon-bg" width="60" height="68" viewBox="0 0 103 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M46.468 1.93003C49.5783 0.119002 53.4217 0.119001 56.5319 1.93003L97.1944 25.6072C100.27 27.3983 102.162 30.6894 102.162 34.2489V81.7511C102.162 85.3106 100.27 88.6017 97.1944 90.3928L56.532 114.07C53.4217 115.881 49.5783 115.881 46.4681 114.07L5.80557 90.3928C2.72957 88.6017 0.837513 85.3106 0.837513 81.7511V34.2489C0.837513 30.6894 2.72957 27.3983 5.80556 25.6072L46.468 1.93003Z" fill="#FECE00"></path>
+                      </svg>
+                      <span class="quantity-number">{{ row.qty }}</span>
+                    </div>
+                    <a class="quantity-btn increase-btn" href="{% url 'change_qty' 'inc' row.product.id %}">+</a>
+                  </div>
+                </div>
+
+                <div class="item-actions">
+                  <span class="item-price">{{ row.line_total }}₽</span>
+                  <div class="action-buttons">
+                    <a class="action-icon edit-icon" href="#" title="Редактировать">
+                      <img src="{% static 'main/img/edit-icon.svg' %}" alt="Редактировать">
+                    </a>
+                    <a class="action-icon delete-icon" href="{% url 'remove_from_cart' row.product.id %}" title="Удалить">
+                      <img src="{% static 'main/img/delete-icon.svg' %}" alt="Удалить">
+                    </a>
+                  </div>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <div class="cart-summary">
+              <div class="total-section">
+                <span class="total-label">ИТОГО</span>
+                <span class="total-price">{{ total }}₽</span>
+              </div>
+              <button class="checkout-btn" onclick="openOrderModal()">ОФОРМИТЬ</button>
+            </div>
+          {% else %}
+            <div style="text-align:center; padding: 50px;">
+              <p style="font-size: 24px; color: #32241A;">Корзина пуста</p>
+            </div>
+          {% endif %}
+        {% else %}
+          <div style="text-align:center; padding: 50px;">
+            <p style="font-size: 24px; margin-bottom: 30px; color: #32241A;">Для просмотра корзины необходимо войти в систему</p>
+            <a href="{% url 'login' %}" class="checkout-btn" style="text-decoration: none; display: inline-block;">ВОЙТИ</a>
+            <a href="{% url 'register' %}" class="checkout-btn" style="text-decoration: none; display: inline-block; margin-left: 20px; background: #6c757d;">РЕГИСТРАЦИЯ</a>
+          </div>
+        {% endif %}
+      </section>
+    </main>
+  </div>
+{% endblock %}
+
+<!-- Модальное окно оформления заказа -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>ОФОРМЛЕНИЕ ЗАКАЗА</h2>
+      <span class="close" onclick="closeOrderModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <form id="orderForm" method="post" action="{% url 'create_order' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_phone">Телефон *</label>
+          <input type="tel" id="id_phone" name="phone" class="form-control" placeholder="+7 (999) 999-99-99" required>
+          <small class="form-text">Введите номер телефона для связи</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="id_email">Email *</label>
+          <input type="email" id="id_email" name="email" class="form-control" placeholder="email@example.com" required>
+          <small class="form-text">Введите email для уведомлений о заказе</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="id_address">Адрес доставки *</label>
+          <textarea id="id_address" name="address" class="form-control" placeholder="Улица, дом, квартира" rows="3" required></textarea>
+          <small class="form-text">Укажите полный адрес доставки</small>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="id_city">Город *</label>
+            <input type="text" id="id_city" name="city" class="form-control" placeholder="Город" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="id_postal_code">Почтовый индекс *</label>
+            <input type="text" id="id_postal_code" name="postal_code" class="form-control" placeholder="123456" pattern="[0-9]{6}" required>
+            <small class="form-text">6 цифр</small>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="id_comment">Комментарий к заказу</label>
+          <textarea id="id_comment" name="comment" class="form-control" placeholder="Дополнительные пожелания к заказу" rows="3"></textarea>
+          <small class="form-text">Необязательно</small>
+        </div>
+        
+        <div class="order-summary">
+          <div class="summary-row">
+            <span>Итого к оплате:</span>
+            <span class="total-amount">{{ total }}₽</span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeOrderModal()">Отмена</button>
+          <button type="submit" class="btn btn-primary">ОФОРМИТЬ ЗАКАЗ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Стили для модального окна */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 0;
+  border: none;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #FECE00, #FFD700);
+  padding: 20px 30px;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #E6B800;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #32241A;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.close {
+  color: #32241A;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #8B4513;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #32241A;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #E6B800;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #FECE00;
+  box-shadow: 0 0 0 3px rgba(254, 206, 0, 0.2);
+}
+
+.form-control::placeholder {
+  color: #999;
+}
+
+.form-text {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.order-summary {
+  background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 25px 0;
+  border: 2px solid #E6B800;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #32241A;
+}
+
+.total-amount {
+  color: #FECE00;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #FECE00, #FFD700);
+  color: #32241A;
+  border: 2px solid #E6B800;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #FFD700, #FECE00);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(254, 206, 0, 0.4);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+  }
+  
+  .modal-header {
+    padding: 15px 20px;
+  }
+  
+  .modal-header h2 {
+    font-size: 20px;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+</style>
+
+<script>
+function openOrderModal() {
+  document.getElementById('orderModal').style.display = 'block';
+  document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку фона
+}
+
+function closeOrderModal() {
+  document.getElementById('orderModal').style.display = 'none';
+  document.body.style.overflow = 'auto'; // Восстанавливаем прокрутку
+}
+
+// Закрытие модального окна при клике вне его
+window.onclick = function(event) {
+  const modal = document.getElementById('orderModal');
+  if (event.target == modal) {
+    closeOrderModal();
+  }
+}
+
+// Закрытие модального окна по клавише Escape
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeOrderModal();
+  }
+});
+
+// Предзаполнение формы данными пользователя
+document.addEventListener('DOMContentLoaded', function() {
+  // Получаем данные пользователя из Django context
+  var userData = {
+    phone: '{{ user.userprofile.phone|default:""|escapejs }}',
+    email: '{{ user.email|default:""|escapejs }}',
+    address: '{{ user.userprofile.address|default:""|escapejs }}',
+    city: '{{ user.userprofile.city|default:""|escapejs }}',
+    postal_code: '{{ user.userprofile.postal_code|default:""|escapejs }}'
+  };
+  
+  if (userData.phone) document.getElementById('id_phone').value = userData.phone;
+  if (userData.email) document.getElementById('id_email').value = userData.email;
+  if (userData.address) document.getElementById('id_address').value = userData.address;
+  if (userData.city) document.getElementById('id_city').value = userData.city;
+  if (userData.postal_code) document.getElementById('id_postal_code').value = userData.postal_code;
+});
+</script>
+
